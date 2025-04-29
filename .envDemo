@@ -1,0 +1,10 @@
+phone=""
+pass=""
+API_KEY=""
+CHANNEL_ID=""
+VISION_KEY=""
+GCS_BUCKET_NAME=""
+AUTH_KEY="./auth_key.json"
+VIDEO_PATH="/<YOUR-PATH-TO>/ksi_tnl/temp_youtube_download/video.mp4.webm"
+
+
