@@ -5,7 +5,7 @@ import time
 import re
 import subprocess
 import os
-import easyocr
+import ocr
 from dotenv import load_dotenv
 load_dotenv()
 # Your YouTube API key
@@ -48,14 +48,12 @@ def check_for_new_videos():
 
         print(f"Checking video: {video_title}")
 
-    download_image(thumbnail_url, "thumbnail.jpg")
+    download_image(thumbnail_url, "./temp_youtube_download/thumbnail.jpg")
 
 #####################################################################
 ####### WE WILL USE EASYOCR FOR SCANNING TEXT FROM THE IMAGE ########
 #####################################################################
-    reader = easyocr.Reader(['en']) # this needs to run only once to load the model into memory
-    text = reader.readtext('thumbnail.jpg',detail=0)
-
+    text = ocr.init('thumbnail.jpg')
     print(f"Extracted text: {text}")
     if contains_money(text):
         print(f"🟢 New video found related to money!")
@@ -74,4 +72,3 @@ while True:
         subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
         time.sleep(15)
         subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
-        break
