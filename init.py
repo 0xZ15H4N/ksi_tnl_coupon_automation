@@ -1,13 +1,18 @@
 from googleapiclient.discovery import build
-from PIL import Image
 import requests
 import time
 import re
 import subprocess
 import os
 import ocr
+import time
+from alert_me import * 
 from dotenv import load_dotenv
+from datetime import datetime,time as tm
+import time
 load_dotenv()
+
+
 # Your YouTube API key
 API_KEY = os.getenv("API_KEY")
 # Channel ID
@@ -36,7 +41,7 @@ def check_for_new_videos():
         part="snippet",
         channelId=CHANNEL_ID,
         order="date",
-        maxResults=5
+        maxResults=1
     )
     response = request.execute()
 
@@ -45,30 +50,39 @@ def check_for_new_videos():
         video_id = item["id"]["videoId"]
         video_url = f"https://www.youtube.com/watch?v={video_id}"
         thumbnail_url = item["snippet"]["thumbnails"]["high"]["url"]
-
-        print(f"Checking video: {video_title}")
+        
 
     download_image(thumbnail_url, "./temp_youtube_download/thumbnail.jpg")
 
 #####################################################################
-####### WE WILL USE EASYOCR FOR SCANNING TEXT FROM THE IMAGE ########
+##################### GOOGLE VISION AI ##############################
 #####################################################################
-    text = ocr.init('thumbnail.jpg')
-    print(f"Extracted text: {text}")
-    if contains_money(text):
+
+    text = ocr.init('./temp_youtube_download/thumbnail.jpg')
+    if contains_money(text[0]):
         print(f"🟢 New video found related to money!")
         print(f"Title: {video_title}")
         print(f"Link: {video_url}")
-        return [True,video_title,video_url]
+        return [True,video_title,video_url,text]
 
-    return [False,"",""]
+    return [False,"","",""]
+
 
 # Main loop
 while True:
-    print("Checking for new videos...")
-    metadata = check_for_new_videos()
-    if metadata[0]:
-        print("Monitoring stopped after finding a relevant video.")
-        subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
-        time.sleep(15)
-        subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
+    now = datetime.now().time()
+# London 8 AM → IST 12:30 PM
+# London 8 PM → IST 12:30 AM (next day, so we wrap around)
+    start = tm(12, 30)   # 12:30 PM IST
+    end = tm(23, 59, 59) # just before midnight
+# Check time
+    if now >= start or now < tm(0, 30):  # Allow from 12:30 AM to 12:30 AM 
+        metadata = check_for_new_videos()
+        if metadata[0]:
+            print("EMAIL SENDED")
+            send_email(sender= os.getenv("EMAIL_"),password = os.getenv("APP_PASS"),recipient =os.getenv("CLIENT_MAIL"),subject="KSI NEW VIDEO",body=f"WAKE UP! KSI DROPPED NEW VIDEO {metadata[2]} {metadata[3]}")
+            print("Monitoring stopped after finding a relevant video.")
+            subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
+            time.sleep(15)
+            subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
+    time.sleep(4320)
