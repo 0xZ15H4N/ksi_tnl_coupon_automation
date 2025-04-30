@@ -30,7 +30,7 @@ if __name__ == "__main__":
         a=f.read()
 
     coupons = re.findall(r"[A-Z0-9]{4}-[A-Z0-9]{6}-[A-Z0-9]{4}",a)
-    send_email(os.getenv("EMAIL_"),os.getenv("APP_PASS"),"zishanza436@gmail.com","ALL THE COUPON CODES",F"{coupons}")
+    send_email(os.getenv("EMAIL_"),os.getenv("APP_PASS"),os.getenv("CLIENT"),"ALL THE COUPON CODES",F"{coupons}")
     amazon_bot.init(coupons)
     print("Temporary directory cleaned up after execution.")
     cleaner.removeAll()
