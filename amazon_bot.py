@@ -26,23 +26,21 @@ def init(coupon):
 # optional: options.add_argument("--headless")
 
 # Automatically match ChromeDriver version to your local Chromium version
-    service = Service(ChromeDriverManager(driver_version="135.0.7049.52").install())
-    driver = webdriver.Chrome(service=service, options=options)
-
-
-    driver.get("https://www.amazon.in/apay-products/gc/claim")
+    for idx,value in enumerate(coupon):
+        service = Service(ChromeDriverManager(driver_version="135.0.7049.52").install())
+        driver = webdriver.Chrome(service=service, options=options)
+        driver.get("https://www.amazon.in/apay-products/gc/claim")
     #login phase
     # email or phone number 
-    dialog = driver.find_element(By.ID,"ap_email")   
-    dialog.send_keys(phone)
-    button = driver.find_element(By.ID, "continue")
-    button.click()
+        dialog = driver.find_element(By.ID,"ap_email")   
+        dialog.send_keys(phone)
+        button = driver.find_element(By.ID, "continue")
+        button.click()
     ## entering password
-    dialog = driver.find_element(By.ID,"ap_password")   
-    dialog.send_keys(pass_)
-    button = driver.find_element(By.ID, "signInSubmit")
-    button.click()
-    for idx,value in enumerate(coupon):
+        dialog = driver.find_element(By.ID,"ap_password")   
+        dialog.send_keys(pass_)
+        button = driver.find_element(By.ID, "signInSubmit")
+        button.click()
         claim_code_input_box = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "claim-Code-input-box")))
         captcha_box = WebDriverWait(driver, 10).until(

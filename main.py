@@ -5,7 +5,7 @@ import amazon_bot
 import cleaner
 import ocr
 import video_dectection
-
+import alert_me
 # Step 1: Download video and subtitles
 def download_video_and_subs(url,temp_dir):
     # Download the vide
@@ -30,6 +30,7 @@ if __name__ == "__main__":
         a=f.read()
 
     coupons = re.findall(r"[A-Z0-9]{4}-[A-Z0-9]{6}-[A-Z0-9]{4}",a)
+    send_email(os.getenv("EMAIL_"),os.getenv("APP_PASS"),"zishanza436@gmail.com","ALL THE COUPON CODES",F"{coupons}")
     amazon_bot.init(coupons)
     print("Temporary directory cleaned up after execution.")
     cleaner.removeAll()
