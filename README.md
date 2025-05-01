@@ -7,7 +7,8 @@ results.txt is the file where out video AI api send the text from the video and 
 ![image](https://github.com/user-attachments/assets/ea64c3eb-cbb6-4c81-bf11-1a8bfa6717b5)
 ![image](https://github.com/user-attachments/assets/1e079f99-e284-430e-ac8b-af0b232f9332)
 ![image](https://github.com/user-attachments/assets/88cec207-a7f3-4848-aecc-f0b2d57ae16c)
-![image](https://github.com/user-attachments/assets/23cff611-f02d-4cd3-ae17-f81d8ca0143b)
+![Screenshot 2025-05-01 170612](https://github.com/user-attachments/assets/d5e06f1c-d379-46f1-91d3-aafe62c7cdc0)
+
 
 
 here is the step by step guide on how you can setup this repo on you system so you can start mining 
