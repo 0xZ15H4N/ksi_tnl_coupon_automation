@@ -9,9 +9,6 @@ results.txt is the file where out video AI api send the text from the video and 
 ![image](https://github.com/user-attachments/assets/88cec207-a7f3-4848-aecc-f0b2d57ae16c)
 ![image](https://github.com/user-attachments/assets/475ae40b-c772-4bcc-878c-128256daa9d8)
 
-
-
-
 here is the step by step guide on how you can setup this repo on you system so you can start mining 
  first like a good boy/girl clone the repo into ~/ , after that rename the repo to ksi_tnl with this command `mv ksi_tnl_coupon_automation ksi_tnl`
  cd into ksi_tnl ,before that copy that .envDemo to .env in the ~/ksi_tnl
@@ -84,7 +81,7 @@ update the channel id with ksi channel id in .env
 
 note that : APP_PASS need that app-pass of email one which will send the mail hope you under stand what i am saying now you are all set 
 
-all you need to do is now find a system that never sleep and download the selenium webdriver and also donwload that the requirements.txt 
+all you need to do is now find a system that never sleep and  also donwload that the requirements.txt 
 
 before running the init.py
 
@@ -94,10 +91,7 @@ if you are on linux then do this
 
 after that run `pip install -r requirements.txt`
 
- and download the driver based on your system  `windows` , `linux` , `macos`
-
-
-now all you need to do is run init.py and start mining the coupons !
+ now all you need to do is run init.py and start mining the coupons !
 if you mine even one of them , please hit a star button and consider following !
 
 or you can buy me a cofffe at  : https://buymeacoffee.com/0xz15h4n
