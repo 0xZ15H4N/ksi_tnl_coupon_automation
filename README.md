@@ -1,5 +1,11 @@
 well I was bored so yeah i made automated py script that can extract coupons out of ksi video (try-not-to-laugh money edtion)
 
+why i make this code public and not private is cause in India i can't redeem the codes , cause the coupons only works in europe
+so why not my fellow ksi fans can redeem it ! 
+
+if you are successfully in redeeming in the coupon please consider liking the repo or 
+you can buy me a coffee at : https://buymeacoffee.com/0xz15h4n
+
 testimony :-
 results.txt is the file where out video AI api send the text from the video and is written into results.txt 
 ![image](https://github.com/user-attachments/assets/dd489992-25f8-46a6-af6c-afca820c185b)
