@@ -51,24 +51,28 @@ at last go to search bar and search `Cloud Video Intelligence API` , click on en
 after that click on three lines on the top left corner and link on `IAM & admin-> service accounts`
 ![image](https://github.com/user-attachments/assets/d61ea04f-5c57-4490-b85b-df15ef89c6b2)
 
-`
-Click “Create Service Account” or choose an existing one.
+
 1 Fill in the details (name, description) and click Create and Continue.
+
 2 Grant access to the service account:
+
 3 Choose a role like Storage Admin (for full access) or a more limited role depending on your needs.
+
 4 Click Done or Continue, then find your newly created account in the list.
+
 5 Click on the service account name → Go to the “Keys” tab.
+
 6 Click “Add Key” → “Create new key” → Choose JSON → Click Create.
+
 7 The auth_key.json file will automatically download.
-`
+
 after that download the .json file in the ~/ksi_tnl and update the .env where `auth_key="./auth_key.json"`
 after to automatically redeem that coupon i have create an amazon_bot for that all you need to do is fill the `phone='' and pass=''` with amazon account password 
 after that also add the video path to `/<full-path>/ksi_tnl/temp_youtube_download/video.mp4.webm`
 
 update the channel id with ksi channel id in .env
- ###########################################################
- ############ here is the optional thing ###################
- ###########################################################
+
+################## optional thing ##########################
 
  if you wish to get the email every time ksi drops a video just update the APP_PASS WITH you gmail app pass for that you can ask chatgpt its 2 minute works
  also update the email and client field with respective email (email from which the mail will be send and client which will recieve it )
