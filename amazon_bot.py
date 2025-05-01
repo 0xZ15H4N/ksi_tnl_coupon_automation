@@ -29,7 +29,8 @@ def init(coupon):
     for idx,value in enumerate(coupon):
         service = Service(ChromeDriverManager(driver_version="135.0.7049.52").install())
         driver = webdriver.Chrome(service=service, options=options)
-        driver.get("https://www.amazon.in/apay-products/gc/claim")
+        #driver.get("https://www.amazon.in/apay-products/gc/claim")
+        driver.get("https://www.amazon.de/gc/redeem/")
     #login phase
     # email or phone number 
         dialog = driver.find_element(By.ID,"ap_email")   
@@ -42,7 +43,8 @@ def init(coupon):
         button = driver.find_element(By.ID, "signInSubmit")
         button.click()
         claim_code_input_box = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.ID, "claim-Code-input-box")))
+        #EC.presence_of_element_located((By.ID, "claim-Code-input-box")
+        EC.presence_of_element_located((By.ID,"gc-redemption-input")))
         captcha_box = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "gc-captcha-solution-input")))
         # passing the capcha if present 
@@ -66,10 +68,11 @@ def init(coupon):
                     captcha_input = shadow_root.find_element(By.CSS_SELECTOR, 'input')
                     captcha_input.send_keys(result[0])
                     # Get the shadow root
-                    shadow_root = driver.execute_script("return arguments[0].shadowRoot",claim_code_input_box)
-                    coupon_code = shadow_root.find_element(By.CSS_SELECTOR, "input")
+                    #shadow_root = driver.execute_script("return arguments[0].shadowRoot",claim_code_input_box)
+                    #coupon_code = shadow_root.find_element(By.CSS_SELECTOR, "input")
                     coupon_code.send_keys(value) # real coupon for testing purpose # fyi its know claimed
-                    button = driver.find_element(By.CLASS_NAME, "add-gift-card-button")
+                    #button = driver.find_element(By.CLASS_NAME, "add-gift-card-button")
+                    button = driver.find_element(By.CLASS_NAME,"gc-redemption-apply-button")
                     button.click()                                        
                 else:
                     print(f"Captcha text could not be read from temp_youtube_download/captcha{idx}.png")
@@ -78,10 +81,14 @@ def init(coupon):
         else:
             print("Captcha element not found :")
             # Get the shadow root
-            shadow_root = driver.execute_script('return arguments[0].shadowRoot', claim_code_input_box)
-            coupon_code = shadow_root.find_element(By.CSS_SELECTOR, 'input')
+            # in europe website its not the input box of coupon is not custom <tux-input> its only <input>
+            #shadow_root = driver.execute_script('return arguments[0].shadowRoot', claim_code_input_box)
+            #coupon_code = shadow_root.find_element(By.CSS_SELECTOR, 'input')
             coupon_code.send_keys(value) # real coupon for testing purpose # fyi its know claimed
-            button = driver.find_element(By.CLASS_NAME, "add-gift-card-button")
+            # for us based use this one
+            #button = driver.find_element(By.CLASS_NAME, "add-gift-card-button")
+            # for europe use this link 
+            button = driver.find_element(By.CLASS_NAME, "gc-redemption-apply-button")
             button.click()
             
             
