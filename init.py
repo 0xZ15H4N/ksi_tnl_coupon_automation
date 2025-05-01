@@ -70,6 +70,7 @@ def check_for_new_videos():
 
 # Main loop
 while True:
+    print("Scaning Channel for latest video in every 2.4hrs !")
     now = datetime.now().time()
 # London 8 AM → IST 12:30 PM
 # London 8 PM → IST 12:30 AM (next day, so we wrap around)

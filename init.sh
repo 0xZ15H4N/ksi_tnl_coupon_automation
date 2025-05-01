@@ -6,6 +6,7 @@ SERVICE_NAME="my_persistent_script"         # <-- Name of the systemd service
 WATCHDOG_FILE="./watchdog.py"   # <-- Where watchdog script will be created
 USER_NAME=$(whoami)                         # Auto-detect current username
 # ========================
+source myenv/bin/activate
 
 echo "Creating watchdog script at $WATCHDOG_FILE..."
 
