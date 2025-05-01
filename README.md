@@ -1,12 +1,11 @@
 well I was bored so yeah i made automated py script that can extract coupons out of ksi video (try-not-to-laugh money edtion)
 
 testimony :-
-results.txt is the file where out video AI api send the text from the video and is written into results.txt
-![image](https://github.com/user-attachments/assets/e45b9d46-1ef2-4715-9c23-846905977165) 
+results.txt is the file where out video AI api send the text from the video and is written into results.txt 
 ![image](https://github.com/user-attachments/assets/dd489992-25f8-46a6-af6c-afca820c185b)
 ![image](https://github.com/user-attachments/assets/540eda68-cc8d-4aa5-93bc-164564882d3f)
-
-
+![image](https://github.com/user-attachments/assets/ea64c3eb-cbb6-4c81-bf11-1a8bfa6717b5)
+![image](https://github.com/user-attachments/assets/1e079f99-e284-430e-ac8b-af0b232f9332)
 ![image](https://github.com/user-attachments/assets/88cec207-a7f3-4848-aecc-f0b2d57ae16c)
 ![image](https://github.com/user-attachments/assets/23cff611-f02d-4cd3-ae17-f81d8ca0143b)
 
