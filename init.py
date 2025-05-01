@@ -70,20 +70,12 @@ def check_for_new_videos():
 
 # Main loop
 while True:
-    print("Scaning Channel for latest video in every 2.4hrs !")
-    now = datetime.now().time()
-# London 8 AM → IST 12:30 PM
-# London 8 PM → IST 12:30 AM (next day, so we wrap around)
-    start = tm(12, 30)   # 12:30 PM IST
-    end = tm(23, 59, 59) # just before midnight
-# Check time
-    if now >= start or now < tm(0, 30):  # Allow from 12:30 AM to 12:30 AM 
-        metadata = check_for_new_videos()
-        if metadata[0]:
-            print("EMAIL SENDED")
-            alert_me.send_email(sender= os.getenv("EMAIL_"),password = os.getenv("APP_PASS"),recipient =os.getenv("CLIENT"),subject="KSI NEW VIDEO",body=f"WAKE UP! KSI DROPPED NEW VIDEO {metadata[2]} {metadata[3]}")
-            print("Monitoring stopped after finding a relevant video.")
-            subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
-            time.sleep(15)
-            subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
-    time.sleep(4320)
+    metadata = check_for_new_videos()
+    if metadata[0]:
+        print("EMAIL SENDED")
+        alert_me.send_email(sender= os.getenv("EMAIL_"),password = os.getenv("APP_PASS"),recipient =os.getenv("CLIENT"),subject="KSI NEW VIDEO",body=f"WAKE UP! KSI DROPPED NEW VIDEO {metadata[2]} {metadata[3]}")
+        print("Monitoring stopped after finding a relevant video.")
+        subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
+        time.sleep(15)
+        subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
+    time.sleep(8640) # scan in every 2.4 hrs 
