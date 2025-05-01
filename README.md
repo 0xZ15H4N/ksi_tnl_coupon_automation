@@ -15,7 +15,7 @@ here is the step by step guide on how you can setup this repo on you system so y
  and you're done 
 
  now come to google cloud service click this link `https://cloud.google.com/free`
- awail the 300$ credits to get started! make sure you cancel the bill before 90 completes ( In India we get 300$ credits ) 
+ awail the 300$ credits to get started! make sure you cancel the bill before 90 completes ( In India we get free 300$ credits ) 
    
 create an account for free , i have used google video intelegence and vision AI to extract text from images and video 
 
