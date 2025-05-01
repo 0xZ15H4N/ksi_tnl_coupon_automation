@@ -2,7 +2,9 @@ well I was bored so yeah i made automated py script that can extract coupons out
 
 testimony :-
 results.txt is the file where out video AI api send the text from the video and is written into results.txt
-![image](https://github.com/user-attachments/assets/e45b9d46-1ef2-4715-9c23-846905977165)
+![image](https://github.com/user-attachments/assets/e45b9d46-1ef2-4715-9c23-846905977165) 
+![image](https://github.com/user-attachments/assets/dd489992-25f8-46a6-af6c-afca820c185b)
+
 ![image](https://github.com/user-attachments/assets/88cec207-a7f3-4848-aecc-f0b2d57ae16c)
 ![image](https://github.com/user-attachments/assets/23cff611-f02d-4cd3-ae17-f81d8ca0143b)
 
