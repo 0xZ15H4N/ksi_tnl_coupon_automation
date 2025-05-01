@@ -91,6 +91,8 @@ all you need to do is now find a system that never sleep and  also donwload that
 
 before running the init.py
 
+with this command `python3 ./init.py`
+
 if you are on linux then do this 
     run this command `python -m venv myenv`
     and after that run `source myenv/bin/activate `
