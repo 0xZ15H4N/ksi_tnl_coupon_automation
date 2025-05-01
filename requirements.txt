@@ -1,9 +1,10 @@
-google-cloud-storage
+google-api-python-client
 google-auth
 google-auth-oauthlib
 google-auth-httplib2
+google-cloud-storage
 requests
 python-dotenv
 tqdm
-selenium
+
 
