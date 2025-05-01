@@ -15,9 +15,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 load_dotenv()
 
 # === CONFIG ===
-KEY_PATH = os.getenv("KEY_PATH")
+KEY_PATH = os.getenv("AUTH_KEY")
 VIDEO_PATH =  os.getenv("VIDEO_PATH") #'/home/theanonymouse/ksi_tnl/temp_youtube_download/video.mp4.webm'
-CHUNK_DURATION = 300  # seconds
+CHUNK_DURATION = 60  # seconds
 CHUNK_DIR = 'videoChunks'
 GCS_BUCKET_NAME = os.getenv("GCS_BUCKET_NAME")
 

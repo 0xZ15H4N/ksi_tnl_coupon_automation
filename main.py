@@ -4,8 +4,10 @@ import argparse
 import amazon_bot
 import cleaner
 import ocr
-import video_dectection
+import video_detection
 import alert_me
+import os
+
 # Step 1: Download video and subtitles
 def download_video_and_subs(url,temp_dir):
     # Download the vide
@@ -26,12 +28,22 @@ if __name__ == "__main__":
     
     video_detection.main()
 
-    with open("./results.txt") as f:
-        a=f.read()
+    with open("results.txt", "r", encoding="utf-8") as f:
+        text = f.read()
 
-    coupons = re.findall(r"[A-Z0-9]{4}-[A-Z0-9]{6}-[A-Z0-9]{4}",a)
-    send_email(os.getenv("EMAIL_"),os.getenv("APP_PASS"),os.getenv("CLIENT"),"ALL THE COUPON CODES",F"{coupons}")
-    amazon_bot.init(coupons)
+# Match exactly: 4-part - 6-part - 4-part, optionally spaced, no timestamp/no prefix
+    pattern = r'\b(?:[\w@#$%^&*]{1,2}\s*){4}-\s*(?:[\w@#$%^&*]{1,2}\s*){6}-\s*(?:[\w@#$%^&*]{1,2}\s*){4}\b'
+
+# Find all matches
+    matches = re.findall(pattern, text)
+
+# Clean spaces within each match
+    cleaned = [''.join(m.split()) for m in matches]
+
+# Optional: remove duplicates
+    unique = sorted(set(cleaned))
+    alert_me.send_email(os.getenv("EMAIL_"),os.getenv("APP_PASS"),os.getenv("CLIENT"),"ALL THE COUPON CODES",F"{unique}")
+    #amazon_bot.init(unique)
     print("Temporary directory cleaned up after execution.")
     cleaner.removeAll()
 
