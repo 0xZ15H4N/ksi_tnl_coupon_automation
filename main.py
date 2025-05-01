@@ -43,7 +43,7 @@ if __name__ == "__main__":
 # Optional: remove duplicates
     unique = sorted(set(cleaned))
     alert_me.send_email(os.getenv("EMAIL_"),os.getenv("APP_PASS"),os.getenv("CLIENT"),"ALL THE COUPON CODES",F"{unique}")
-    #amazon_bot.init(unique)
+   
     print("Temporary directory cleaned up after execution.")
     cleaner.removeAll()
 
