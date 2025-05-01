@@ -1,10 +1,10 @@
-![image](https://github.com/user-attachments/assets/a7afb8cf-553c-407d-a0a9-d7d5f480f72f)
-
 well I was bored so yeah i made automated py script that can extract coupons out of ksi video (try-not-to-laugh money edtion)
 
 testimony :-
 results.txt is the file where out video AI api send the text from the video and is written into results.txt
 ![image](https://github.com/user-attachments/assets/e45b9d46-1ef2-4715-9c23-846905977165)
+![image](https://github.com/user-attachments/assets/88cec207-a7f3-4848-aecc-f0b2d57ae16c)
+![image](https://github.com/user-attachments/assets/23cff611-f02d-4cd3-ae17-f81d8ca0143b)
 
 
 here is the step by step guide on how you can setup this repo on you system so you can start mining 
@@ -85,17 +85,8 @@ if you are on linux then do this
 
 after that run `pip install -r requirements.txt`
 
- install the selenium webchromedriver for that you can refer to this link https://googlechromelabs.github.io/chrome-for-testing/
  and download the driver based on your system  `windows` , `linux` , `macos`
 
-this part is specially for one who are running this in windows 
-repace the service with this in the amazon_bot.py
-######## Add Chrome absolute path here #############👇
-    # for windows  service = Service(r"C:\Users\dell\Desktop\temp\chromedriver-win64\chromedriver-win64\chromedriver.exe")
-
-also you need to pre-run the amazon_bot.py with fake coupons to make sure its works well and if you are in US replce the link in the driver.get with you region/gc/redeem or some that takes you to redeem coupon section in amzon
-some times region wise the html tags are different so coupon input tag and there ids are diffrent make sure you update the amazon_bot.py with corrent id of coupon and captcha id and 
-submit button 
 
 now all you need to do is run init.py and start mining the coupons !
 if you mine even one of them , please hit a star button and consider following !
