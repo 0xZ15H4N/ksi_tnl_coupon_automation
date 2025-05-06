@@ -22,7 +22,6 @@ def send_email(sender, password, recipient, subject, body):
         server.login(sender, password)
         server.send_message(msg)
         server.quit()
-        print("Email with image sent successfully.")
     except Exception as e:
         print(f"Error: {e}")
 
