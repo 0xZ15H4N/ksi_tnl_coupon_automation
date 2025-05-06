@@ -6,7 +6,7 @@ import subprocess
 import os
 import ocr
 import time
-from alert_me import * 
+import alert_me 
 from dotenv import load_dotenv
 from datetime import datetime,time as tm
 import time
@@ -73,6 +73,7 @@ print("Scanning starting in 3....2....1...")
 # Main loop
 while True:
     print("Scaning for new video")
+    alert_me.send_email(os.getenv("EMAIL_"),os.getenv("APP_PASS"),os.getenv("CLIENT"),"HITTING THE Youtube_data_V3/?search api","Finding the latest video??")
     metadata = check_for_new_videos()
     if metadata[0]:
         print("EMAIL SENDED")
