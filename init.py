@@ -77,7 +77,7 @@ while True:
     metadata = check_for_new_videos()
     if metadata[0]:
         print("EMAIL SENDED")
-        alert_me.send_email(sender= os.getenv("EMAIL_"),password = os.getenv("APP_PASS"),recipient =os.getenv("CLIENT"),subject="KSI NEW VIDEO",body=f"WAKE UP! KSI DROPPED NEW VIDEO {metadata[2]} {metadata[3]}")
+        alert_me.send_email(os.getenv("EMAIL_"),os.getenv("APP_PASS"),os.getenv("CLIENT"),"KSI NEW VIDEO",f"WAKE UP! KSI DROPPED NEW VIDEO {metadata[2]} {metadata[3]}")
         print("Monitoring stopped after finding a relevant video.")
         subprocess.run(["python3","./main.py","--link",f"{metadata[2]}"])
     time.sleep(8640) # scan in every 2.4 hrs 
