@@ -1,1 +1,4 @@
 myenv
+cookies.txt
+.env
+auth_key.json

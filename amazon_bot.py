@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from PIL import Image
+import requests
 from dotenv import load_dotenv
 import os
 import ocr 
@@ -20,10 +21,11 @@ pass_ = os.getenv("pass")
 
 
 def init(coupon):
-    
     ######## Add Chrome absolute path here #############
     options = Options()
-# optional: options.add_argument("--headless")
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
 
 # Automatically match ChromeDriver version to your local Chromium version
     for idx,value in enumerate(coupon):
@@ -42,39 +44,29 @@ def init(coupon):
         dialog.send_keys(pass_)
         button = driver.find_element(By.ID, "signInSubmit")
         button.click()
-        claim_code_input_box = WebDriverWait(driver, 10).until(
-        #EC.presence_of_element_located((By.ID, "claim-Code-input-box")
-        EC.presence_of_element_located((By.ID,"gc-redemption-input")))
-        captcha_box = driver.find_element(By.ID, "gc-captcha-code-input")))
+        coupon_code = driver.find_element(By.ID,"gc-redemption-input")
+        captcha_box = driver.find_element(By.ID, "gc-captcha-code-input")
         # passing the capcha if present 
         if captcha_box:
             captcha_element = driver.find_element(By.ID, 'gc-captcha-image')
             src_data = captcha_element.get_attribute('src')
-
-            if src_data.startswith('data:image/png;base64,'):
-            #     # Extract base64 data
-                base64_data = src_data.split(',')[1]
-            #     # Decode base64 to image bytes
-                image_data = base64.b64decode(base64_data)
-            #     # Save image temporarily
-                with open(fr"/home/theanonymouse/ksi_tnl/temp_youtube_download/captcha{idx}.png", 'wb') as f:
-                    f.write(image_data)
-                
-                result = ocr.init(fr"/home/theanonymouse/ksi_tnl/temp_youtube_download/captcha{idx}.png")
-                if result!=[]:
-                    print(result)
-                    captcha_box.send_keys(result[0])
-                    coupon_code.send_keys(value) # real coupon for testing purpose # fyi its know claimed
-                    button = driver.find_element(By.CLASS_NAME,"gc-redemption-apply-button")
-                    button.click()                                        
-                else:
-                    print(f"Captcha text could not be read from temp_youtube_download/captcha{idx}.png")
+            response = requests.get(src_data)
+            with open(f"/home/theanonymouse/ksi_tnl/temp_youtube_download/captcha{idx}.jpg","wb") as f:
+                f.write(response.content)
+            result = ocr.init(fr"/home/theanonymouse/ksi_tnl/temp_youtube_download/captcha{idx}.jpg")
+            if result!=[]:
+                print(result)
+                captcha_box.send_keys(result[0])
+                coupon_code.send_keys(value) # real coupon for testing purpose # fyi its know claimed
+                button = driver.find_element(By.ID,"gc-redemption-apply-button")
+                a = input()
+                button.click()                                        
             else:
-                print("Captcha image src is not in expected base64 format.")
+                 print(f"Captcha text could not be read from temp_youtube_download/captcha{idx}.png")
         else:
             print("Captcha element not found :")
             coupon_code.send_keys(value) 
-            button = driver.find_element(By.CLASS_NAME, "gc-redemption-apply-button")
+            button = driver.find_element(By.ID, "gc-redemption-apply-button")
             button.click()
             
             
